@@ -7,6 +7,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(() => {
   return {
+    base: '/LearnSmart/',
     plugins: [
       react(),
       tailwindcss(),
@@ -14,17 +15,31 @@ export default defineConfig(() => {
         name: 'service-worker-scope-headers',
         configureServer(server) {
           server.middlewares.use((req, res, next) => {
-            if (req.url === '/sw.js' || req.url?.startsWith('/sw.js?')) {
+            // Redirect root to /LearnSmart/ in dev mode
+            if (req.url === '/') {
+              res.writeHead(302, { Location: '/LearnSmart/' });
+              res.end();
+              return;
+            }
+            if (
+              req.url === '/sw.js' ||
+              req.url === '/LearnSmart/sw.js' ||
+              req.url?.startsWith('/sw.js?') ||
+              req.url?.startsWith('/LearnSmart/sw.js?')
+            ) {
               res.setHeader('Content-Type', 'text/javascript');
-              res.setHeader('Service-Worker-Allowed', '/');
+              res.setHeader('Service-Worker-Allowed', '/LearnSmart/');
               const swPath = path.resolve('public/sw.js');
               if (fs.existsSync(swPath)) {
                 res.end(fs.readFileSync(swPath, 'utf-8'));
                 return;
               }
             }
-            if (req.url?.startsWith('/dev-dist/sw.js')) {
-              res.setHeader('Service-Worker-Allowed', '/');
+            if (
+              req.url?.startsWith('/dev-dist/sw.js') ||
+              req.url?.startsWith('/LearnSmart/dev-dist/sw.js')
+            ) {
+              res.setHeader('Service-Worker-Allowed', '/LearnSmart/');
             }
             next();
           });
@@ -42,7 +57,7 @@ export default defineConfig(() => {
           'pwa-maskable-512x512.png'
         ],
         manifest: {
-          id: '/',
+          id: '/LearnSmart/',
           name: 'LearnSmart – Learn, Explore and Grow!',
           short_name: 'LearnSmart',
           description: 'An interactive, inclusive educational learning app designed for young learners, beginners, and neurodivergent learners.',
@@ -50,24 +65,24 @@ export default defineConfig(() => {
           background_color: '#ffffff',
           display: 'standalone',
           orientation: 'any',
-          start_url: '/',
-          scope: '/',
+          start_url: '/LearnSmart/',
+          scope: '/LearnSmart/',
           categories: ['education', 'kids'],
           icons: [
             {
-              src: '/pwa-192x192.png',
+              src: '/LearnSmart/pwa-192x192.png',
               sizes: '192x192',
               type: 'image/png',
               purpose: 'any'
             },
             {
-              src: '/pwa-512x512.png',
+              src: '/LearnSmart/pwa-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any'
             },
             {
-              src: '/pwa-maskable-512x512.png',
+              src: '/LearnSmart/pwa-maskable-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'maskable'

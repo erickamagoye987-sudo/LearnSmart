@@ -6,6 +6,9 @@ export function registerPWA() {
     return;
   }
 
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  const swUrl = `${baseUrl}sw.js`;
+
   try {
     const updateSW = registerSW({
       immediate: true,
@@ -16,19 +19,19 @@ export function registerPWA() {
       onOfflineReady() {
         console.log('[LearnSmart PWA] Application ready for offline learning!');
       },
-      onRegisteredSW(swUrl, registration) {
-        console.log('[LearnSmart PWA] Service worker registered at:', swUrl, 'scope:', registration?.scope);
+      onRegisteredSW(registeredUrl, registration) {
+        console.log('[LearnSmart PWA] Service worker registered at:', registeredUrl, 'scope:', registration?.scope);
       },
       onRegisterError(error) {
-        console.warn('[LearnSmart PWA] virtual:pwa-register notice, testing root /sw.js:', error);
-        navigator.serviceWorker.register('/sw.js', { scope: '/' })
-          .then((reg) => console.log('[LearnSmart PWA] Root service worker registered for scope:', reg.scope))
-          .catch((e) => console.warn('[LearnSmart PWA] Root registration status:', e));
+        console.warn('[LearnSmart PWA] virtual:pwa-register notice, testing:', swUrl, error);
+        navigator.serviceWorker.register(swUrl, { scope: baseUrl })
+          .then((reg) => console.log('[LearnSmart PWA] Base service worker registered for scope:', reg.scope))
+          .catch((e) => console.warn('[LearnSmart PWA] Registration status:', e));
       }
     });
   } catch (err) {
-    navigator.serviceWorker.register('/sw.js', { scope: '/' })
-      .then((reg) => console.log('[LearnSmart PWA] Root service worker registered for scope:', reg.scope))
-      .catch((e) => console.warn('[LearnSmart PWA] Registration attempt:', e));
+    navigator.serviceWorker.register(swUrl, { scope: baseUrl })
+      .then((reg) => console.log('[LearnSmart PWA] Direct service worker registered for scope:', reg.scope))
+      .catch((e) => console.warn('[LearnSmart PWA] Direct registration attempt:', e));
   }
 }

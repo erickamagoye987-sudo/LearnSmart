@@ -1,16 +1,16 @@
-// LearnSmart Progressive Web App (PWA) Service Worker
-const CACHE_NAME = 'learnsmart-v1.0.1';
+// LearnSmart Progressive Web App (PWA) Service Worker for GitHub Pages
+const CACHE_NAME = 'learnsmart-ghpages-v1.0.0';
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/pwa-192x192.png',
-  '/pwa-512x512.png',
-  '/pwa-maskable-512x512.png',
-  '/icon-192x192.png',
-  '/icon-512x512.png',
-  '/apple-touch-icon.png',
-  '/icon.svg'
+  './',
+  './index.html',
+  './manifest.json',
+  './pwa-192x192.png',
+  './pwa-512x512.png',
+  './pwa-maskable-512x512.png',
+  './icon-192x192.png',
+  './icon-512x512.png',
+  './apple-touch-icon.png',
+  './icon.svg'
 ];
 
 // Install event: Precache core application shell
@@ -18,8 +18,10 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[LearnSmart SW] Precaching application shell...');
-      return cache.addAll(STATIC_ASSETS);
+      console.log('[LearnSmart SW] Precaching application shell on scope:', self.registration.scope);
+      return cache.addAll(STATIC_ASSETS).catch((err) => {
+        console.warn('[LearnSmart SW] Precache partial error (non-fatal):', err);
+      });
     })
   );
 });
@@ -64,7 +66,7 @@ self.addEventListener('fetch', (event) => {
         .catch(async () => {
           const cachedRes = await caches.match(req);
           if (cachedRes) return cachedRes;
-          return caches.match('/') || caches.match('/index.html');
+          return caches.match('./') || caches.match('./index.html');
         })
     );
     return;

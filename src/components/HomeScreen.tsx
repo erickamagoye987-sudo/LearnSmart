@@ -3,6 +3,10 @@ import { BookOpen, Hash, Award, Star, ArrowRight, Settings, Volume2, Sparkles, C
 import { UserProgress, UserSettings } from '../types';
 import { playSound, speakText } from '../utils/audio';
 import { PWAInstallButton } from './PWAInstallButton';
+import mascotImg from '../assets/images/welcome_mascot_learnsmart_1794146467627.jpg';
+import abcImg from '../assets/images/module_abc_illustration_1794146468365.jpg';
+import numbersImg from '../assets/images/module_numbers_illustration_1794146468972.jpg';
+import quizImg from '../assets/images/module_quiz_trophy_1794146469117.jpg';
 
 interface HomeScreenProps {
   onNavigate: (tab: 'home' | 'abcs' | 'numbers' | 'quiz') => void;
@@ -82,7 +86,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <div className="relative group max-w-[280px] sm:max-w-[320px]">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/40 bg-sky-200 aspect-4/3">
                 <img
-                  src="/src/assets/images/welcome_mascot_learnsmart_1794146467627.jpg"
+                  src={mascotImg}
                   alt="LearnSmart friendly owl mascot holding a storybook"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   referrerPolicy="no-referrer"
@@ -210,7 +214,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             {/* Visual Card Image */}
             <div className="relative w-full aspect-4/3 bg-blue-100 overflow-hidden">
               <img
-                src="/src/assets/images/module_abc_illustration_1794146468365.jpg"
+                src={abcImg}
                 alt="Colorful alphabet toy blocks showing letters A B C with red apple and ball"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 referrerPolicy="no-referrer"
@@ -263,7 +267,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             {/* Visual Card Image */}
             <div className="relative w-full aspect-4/3 bg-emerald-100 overflow-hidden">
               <img
-                src="/src/assets/images/module_numbers_illustration_1794146468972.jpg"
+                src={numbersImg}
                 alt="Colorful wooden counting blocks with numbers 1 2 3 and counting rings"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 referrerPolicy="no-referrer"
@@ -316,7 +320,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             {/* Visual Card Image */}
             <div className="relative w-full aspect-4/3 bg-amber-100 overflow-hidden">
               <img
-                src="/src/assets/images/module_quiz_trophy_1794146469117.jpg"
+                src={quizImg}
                 alt="Joyful smiling gold star trophy with victory ribbon and confetti"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 referrerPolicy="no-referrer"

@@ -1,0 +1,8 @@
+{
+  "name": "LearnSmart",
+  "description": "Learn, Explore and Grow! An interactive, inclusive educational learning app designed for young learners, beginners, and neurodivergent learners.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

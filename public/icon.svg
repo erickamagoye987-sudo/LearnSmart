@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="learnsmart-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2196F3" />
+      <stop offset="100%" stop-color="#1565C0" />
+    </linearGradient>
+    <linearGradient id="star-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFD54F" />
+      <stop offset="100%" stop-color="#FFB300" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0D47A1" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Squircle Background #1976D2 -->
+  <rect width="512" height="512" rx="128" fill="url(#learnsmart-grad)" />
+
+  <!-- Outer Star Glow -->
+  <circle cx="256" cy="245" r="150" fill="#FFD54F" opacity="0.2" />
+
+  <!-- 5-Pointed Star -->
+  <polygon
+    points="256,105 293,190 385,198 316,260 336,350 256,302 176,350 196,260 127,198 219,190"
+    fill="url(#star-grad)"
+    stroke="#FFFFFF"
+    stroke-width="8"
+    stroke-linejoin="round"
+    filter="url(#shadow)"
+  />
+
+  <!-- Friendly Face Eyes -->
+  <circle cx="225" cy="235" r="10" fill="#1E293B" />
+  <circle cx="287" cy="235" r="10" fill="#1E293B" />
+  
+  <!-- Friendly Face Smile -->
+  <path d="M 230 262 Q 256 288 282 262" fill="none" stroke="#1E293B" stroke-width="6" stroke-linecap="round" />
+
+  <!-- Subtitle Tag -->
+  <text x="256" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">
+    LEARNSMART
+  </text>
+</svg>
